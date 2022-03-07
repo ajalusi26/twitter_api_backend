@@ -31,8 +31,8 @@ class SessionController < ApplicationController
         #     render json: {status: "no one logged in"}
         # end
         
-       
-       render json: {hi: "hi"}
+       session[:test] ||= 1
+       render json: {hi: session[:test]}
     end
     
     
