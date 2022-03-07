@@ -21,18 +21,18 @@ class SessionController < ApplicationController
 
     #check if session exists
     def is_logged_in
-
-        # if session
-          
-        #     user = User.find(session[:current_user])
-        #     render json: user, status: :ok
-        # else
-            
-        #     render json: {status: "no one logged in"}
-        # end
         
-       session[:test] ||= 1
-       render json: {hi: session[:test]}
+        if session[:current_user]
+          
+            user = User.find(session[:current_user])
+            render json: session[:current_user], status: :ok
+        else
+            
+            render json: {status: "no one logged in"}
+        end
+        
+     
+       
     end
     
     

@@ -14,6 +14,11 @@ class TweetsController < ApplicationController
         render json: feed, status: :ok
     end
 
+    def show
+        tweet = Tweet.find(params[:id])
+        render json: tweet, serializer: TweetCommentsSerializer ,status: :ok
+    end
+
     private
    
     def route_params

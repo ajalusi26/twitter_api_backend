@@ -15,6 +15,7 @@ Follow.create(follower_id: user_two.id, followed_user_id: user_one.id)
 Follow.create(follower_id: user_three.id, followed_user_id: user_two.id)
 Follow.create(follower_id: user_one.id, followed_user_id: user_three.id)
 Follow.create(follower_id: user_three.id, followed_user_id: user_one.id)
+Follow.create(follower_id: user_two.id, followed_user_id: user_three.id)
 
 Profile.create(bio: 'cool dude', display_name: 'The Bob', user_id: user_one.id, profile_pic: 'https://twirpz.files.wordpress.com/2015/06/twitter-avi-gender-balanced-figure.png?w=640')
 Profile.create(bio: 'Why am i a programmer :(', display_name: 'The John', user_id: user_two.id, profile_pic: 'https://twirpz.files.wordpress.com/2015/06/twitter-avi-gender-balanced-figure.png?w=640')
