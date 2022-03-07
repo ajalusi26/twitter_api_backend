@@ -10,7 +10,7 @@ class SessionController < ApplicationController
             # session.delete(:current_user)
             
             # session[:current_user] ||= user.id
-            # session[:current_user] = user.id
+            session[:current_user] = user.id
             
             render json: user, status: :ok            
         else
@@ -22,8 +22,8 @@ class SessionController < ApplicationController
     #check if session exists
     def is_logged_in
 
-        # if session[:current_user] 
-            
+        # if session
+          
         #     user = User.find(session[:current_user])
         #     render json: user, status: :ok
         # else
@@ -32,7 +32,7 @@ class SessionController < ApplicationController
         # end
         
        
-       render json: {hi: 'hi'}
+       render json: {hi: "hi"}
     end
     
     

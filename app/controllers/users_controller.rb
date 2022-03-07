@@ -3,6 +3,7 @@ class UsersController < ApplicationController
         user = User.create!(route_params)
         render json: user, status: :created
     end
+  
 
     private
 
