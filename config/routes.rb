@@ -20,9 +20,9 @@ Rails.application.routes.draw do
   post '/new_tweet', to: 'tweets#new_tweet'
   post '/new_comment', to: 'comments#new_comment'
 
-  #like/unlike tweet
+  #like/unlike tweet or comment
   post '/like_tweet', to: 'tweets#like_tweet'
- 
+  post '/like_comment', to: 'comments#like_comment'
   # Routing logic: fallback requests for React Router.
   # Leave this here to help deploy your app later!
   get "*path", to: "fallback#index", constraints: ->(req) { !req.xhr? && req.format.html? }

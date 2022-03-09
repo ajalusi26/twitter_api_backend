@@ -39,12 +39,12 @@ class TweetsController < ApplicationController
             tweet.update(like_count: tweet.like_count -= 1)
             liked.destroy
             
-            render json: tweet.like_count, status: :ok
+            render json: {unliked: tweet.like_count}, status: :ok
         else
             tweet = Tweet.find(params[:tweet_id])
             tweet.update(like_count: tweet.like_count += 1)
             LikedTweet.create!(user_id: params[:user_id], tweet_id: params[:tweet_id])
-            render json: tweet.like_count, status: :ok
+            render json: {liked: tweet.like_count}, status: :ok
         end
        
        

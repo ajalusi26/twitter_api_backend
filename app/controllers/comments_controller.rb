@@ -7,6 +7,26 @@ class CommentsController < ApplicationController
         render json: new_comment, status: :created
     end
 
+    def like_comment
+        is_liked = LikedComment.find_by(user_id: params[:user_id], comment_id: params[:comment_id])
+         
+        if is_liked 
+            comment = Comment.find(params[:comment_id])
+            unless comment.like_count == 0
+                comment.update!(like_count: comment.like_count -= 1) 
+                is_liked.destroy
+                render json: {unliked: comment.like_count}, status: :ok
+            else
+                render json: {unliked: 0}, status: :ok
+            end
+        else
+            comment = Comment.find(params[:comment_id])
+            comment.update!(like_count: comment.like_count += 1)
+            LikedComment.create!(user_id: params[:user_id], comment_id: params[:comment_id])
+            render json: {liked: comment.like_count}, status: :ok
+        end
+    end
+
     private
 
     def route_params
