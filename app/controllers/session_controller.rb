@@ -7,15 +7,12 @@ class SessionController < ApplicationController
     def login
         user = User.find_by(username: params[:username])
         if user&.authenticate(params[:password])
-            # session.delete(:current_user)
-            
-            # session[:current_user] ||= user.id
+      
             session[:current_user] = user.id
             
             render json: user, status: :ok            
         else
             render json: {results: 'wrong password lmfaoo'}, status: :ok
-
         end
     end
 
@@ -37,7 +34,7 @@ class SessionController < ApplicationController
     
     
     def logout
-        session[:logged_in] = nil
+        session[:current_user] = nil
         render json: "logged out", status: :ok
     end
 

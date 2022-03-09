@@ -21,7 +21,7 @@ Profile.create(bio: 'cool dude', display_name: 'The Bob', user_id: user_one.id, 
 Profile.create(bio: 'Why am i a programmer :(', display_name: 'The John', user_id: user_two.id, profile_pic: 'https://twirpz.files.wordpress.com/2015/06/twitter-avi-gender-balanced-figure.png?w=640')
 Profile.create(bio: 'woo love my life :D', display_name: 'The Kathy', user_id: user_three.id, profile_pic: 'https://twirpz.files.wordpress.com/2015/06/twitter-avi-gender-balanced-figure.png?w=640')
 
-tweet = Tweet.create(tweet: "HI EVERYONE :D", user_id: user_one.id, like_count: 0, comment_count: 0, retweet_count: 0, is_retweet: false)
+tweet = Tweet.create(tweet: "HI EVERYONE :D", user_id: user_one.id, like_count: 0, comment_count: 3, retweet_count: 0, is_retweet: false)
 Tweet.create(tweet: "league of noobs", user_id: user_one.id, like_count: 0, comment_count: 0, retweet_count: 0, is_retweet: false)
 Tweet.create(tweet: "cant wait for elden ring!!!", user_id: user_one.id, like_count: 0, comment_count: 0, retweet_count: 0, is_retweet: false)
 
