@@ -5,7 +5,7 @@ class TweetsController < ApplicationController
        
         feed = []
         # user =  User.find(session[:current_user])
-        user =  User.find(params[:user_id])
+        user =  User.find(session[:current_user])
         following = user.followings
         
         following.map do |x|
@@ -24,7 +24,7 @@ class TweetsController < ApplicationController
     end
 
     def new_tweet
-        new_tweet = Tweet.create!(tweet: params[:tweet], user_id: params[:user_id], like_count: 0, comment_count: 0, retweet_count: 0, is_retweet: false)
+        new_tweet = Tweet.create!(tweet: params[:tweet], user_id: session[:current_user], like_count: 0, comment_count: 0, retweet_count: 0, is_retweet: false)
         render json: new_tweet, status: :created
     end
 
@@ -33,21 +33,26 @@ class TweetsController < ApplicationController
     
 
     def like_tweet
-        liked = LikedTweet.find_by(user_id: params[:user_id], tweet_id: params[:tweet_id])
+        liked = LikedTweet.find_by(user_id: session[:current_user], tweet_id: params[:tweet_id])
         if liked
             tweet = Tweet.find(params[:tweet_id])
+            
             tweet.update(like_count: tweet.like_count -= 1)
             liked.destroy
+            if tweet.valid?
+                render json: {unliked: tweet.like_count}, status: :ok
+            else
+                render json: {unliked: 0}, status: :ok
+            end
             
-            render json: {unliked: tweet.like_count}, status: :ok
         else
             tweet = Tweet.find(params[:tweet_id])
             tweet.update(like_count: tweet.like_count += 1)
-            LikedTweet.create!(user_id: params[:user_id], tweet_id: params[:tweet_id])
+            LikedTweet.create!(user_id: session[:current_user], tweet_id: params[:tweet_id])
             render json: {liked: tweet.like_count}, status: :ok
         end
        
-       
+      
        
     end
 

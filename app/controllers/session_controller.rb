@@ -22,9 +22,9 @@ class SessionController < ApplicationController
         if session[:current_user]
           
             user = User.find(session[:current_user])
-            render json: session[:current_user], status: :ok
+            render json: user, status: :ok
         else
-            
+           
             render json: {status: "no one logged in"}
         end
         

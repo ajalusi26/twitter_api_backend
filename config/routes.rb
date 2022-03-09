@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     get 'is_logged_in', to: 'session#is_logged_in'
     
   # get users feed 
-  get '/user_feed/:user_id', to: 'tweets#user_feed'
+  get '/user_feed', to: 'tweets#user_feed'
 
   #write a tweet || new comment
   post '/new_tweet', to: 'tweets#new_tweet'
