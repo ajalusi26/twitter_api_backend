@@ -12,7 +12,7 @@ function PostTweet({setFeed, feed}){
           tweet: tweetMessage,
         }
         setTweetMessage("")
-        fetch('/new_tweet', {
+        fetch('/tweets', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

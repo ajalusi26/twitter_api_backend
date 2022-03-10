@@ -9,8 +9,8 @@ function Feed({setTweetPage, tweetPage}) {
   const [feed, setFeed] = useState([]);
 
   useEffect(() => {
-      //localhost needs to be replaced with sessions
-   fetch(`/user_feed`)
+     
+   fetch(`/tweets`)
    .then(r => r.json())
    .then(data => {
     setFeed(data)

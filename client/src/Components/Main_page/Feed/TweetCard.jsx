@@ -19,7 +19,7 @@ function TweetCard({displayName, username, comment_count, like_count, retweet_co
       let postData = {
         tweet_id: tweet_id
       }
-      fetch('/like_tweet', {
+      fetch(`like_tweet`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

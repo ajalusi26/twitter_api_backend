@@ -2,6 +2,7 @@ import React from "react";
 import "./Sidebar.css";
 import TwitterIcon from "@material-ui/icons/Twitter";
 
+import { useNavigate } from "react-router-dom";
 import HomeIcon from "@material-ui/icons/Home";
 import SearchIcon from "@material-ui/icons/Search";
 import NotificationsNoneIcon from "@material-ui/icons/NotificationsNone";
@@ -14,16 +15,26 @@ import { Button } from "@material-ui/core";
 import SidebarOption from "./SidebarOption";
 
 function Sidebar() {
+  let navigate = useNavigate()
+  function myTweets(){
+    navigate('/my-tweets')
+  }
+  function home(){ 
+    navigate('/HomePage')
+  }
   return (
     <div className="sidebar">
       <TwitterIcon className="sidebar__twitterIcon" />
-
+      <div onClick={home}>
       <SidebarOption active Icon={HomeIcon} text="Home" />
+      </div>
       <SidebarOption Icon={SearchIcon} text="Explore" />
       <SidebarOption Icon={NotificationsNoneIcon} text="Notifications" />
       <SidebarOption Icon={MailOutlineIcon} text="Messages" />
       <SidebarOption Icon={BookmarkBorderIcon} text="Bookmarks" />
-      <SidebarOption Icon={ListAltIcon} text="Lists" />
+      <div onClick={myTweets}>
+      <SidebarOption Icon={ListAltIcon} text="My Tweets"/>
+      </div>
       <SidebarOption Icon={PermIdentityIcon} text="Profile" />
       <SidebarOption Icon={MoreHorizIcon} text="More" />
 

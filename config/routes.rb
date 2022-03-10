@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     get 'is_logged_in', to: 'session#is_logged_in'
     
   # get users feed 
-  get '/user_feed', to: 'tweets#user_feed'
+  # get '/user_feed', to: 'tweets#user_feed'
 
   #write a tweet || new comment
   post '/new_tweet', to: 'tweets#new_tweet'
@@ -25,5 +25,9 @@ Rails.application.routes.draw do
   post '/like_comment', to: 'comments#like_comment'
   # Routing logic: fallback requests for React Router.
   # Leave this here to help deploy your app later!
+
+  #get user tweets
+  get '/get_user_tweets', to: 'users#get_user_tweets'
+  
   get "*path", to: "fallback#index", constraints: ->(req) { !req.xhr? && req.format.html? }
 end

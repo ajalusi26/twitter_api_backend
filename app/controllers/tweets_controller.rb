@@ -1,7 +1,7 @@
 class TweetsController < ApplicationController
     
     #user feed with author of each tweet (with profile info)
-    def user_feed
+    def index
        
         feed = []
         # user =  User.find(session[:current_user])
@@ -23,15 +23,19 @@ class TweetsController < ApplicationController
         render json: tweet, serializer: TweetCommentsSerializer ,status: :ok
     end
 
-    def new_tweet
+    def create
         new_tweet = Tweet.create!(tweet: params[:tweet], user_id: session[:current_user], like_count: 0, comment_count: 0, retweet_count: 0, is_retweet: false)
         render json: new_tweet, status: :created
     end
 
     #like & unlike tweets
-
-    
-
+    def destroy
+        to_delete = Tweet.find(params[:id])
+        to_delete.destroy
+        user = User.find(session[:current_user])
+        render json: user.user_tweets
+    end
+   
     def like_tweet
         liked = LikedTweet.find_by(user_id: session[:current_user], tweet_id: params[:tweet_id])
         if liked

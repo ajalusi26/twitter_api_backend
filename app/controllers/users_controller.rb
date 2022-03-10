@@ -9,7 +9,13 @@ class UsersController < ApplicationController
     def show
         render json: User.find(params[:id]), status: :ok
     end
-  
+    
+    def get_user_tweets
+        user = User.find(session[:current_user])
+        # user = User.find(2)
+       
+        render json: {user: user, tweets: user.user_tweets, profile: user.profile}
+    end
 
     private
 
